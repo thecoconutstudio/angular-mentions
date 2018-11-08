@@ -23,7 +23,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dist": "ngc -p src/mention",
-    "prepare": "prepare"
+    "prepare": "npm run dist"
   },
   "private": false,
   "peerDependencies": {
