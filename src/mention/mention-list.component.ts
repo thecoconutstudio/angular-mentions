@@ -52,7 +52,7 @@ export class MentionListComponent implements OnInit {
   items = [];
   activeIndex: number = 0;
   hidden: boolean = false;
-  constructor(private element: ElementRef) {}
+  constructor(public element: ElementRef) {}
 
   ngOnInit() {
     if (!this.itemTemplate) {

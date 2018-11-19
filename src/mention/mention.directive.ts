@@ -32,8 +32,8 @@ const KEY_2 = 50;
 })
 export class MentionDirective implements OnChanges {
 
-  // stores the items passed to the mentions directive and used to populate the root items in mentionConfig 
-  private mentionItems:any[];
+  // stores the items passed to the mentions directive and used to populate the root items in mentionConfig
+  public mentionItems:any[];
 
   @Input('mention') set mention(items:any[]) {
     this.mentionItems = items;
@@ -42,9 +42,9 @@ export class MentionDirective implements OnChanges {
   // the provided configuration object
   @Input() mentionConfig: MentionConfig = {items:[]};
 
-  private activeConfig: MentionConfig;// = this.DEFAULT_CONFIG;
+  public activeConfig: MentionConfig;// = this.DEFAULT_CONFIG;
 
-  private DEFAULT_CONFIG: MentionConfig = {
+  public DEFAULT_CONFIG: MentionConfig = {
     items: [],
     triggerChar: '@',
     labelKey: 'label',
@@ -72,9 +72,9 @@ export class MentionDirective implements OnChanges {
   iframe: any; // optional
 
   constructor(
-    private _element: ElementRef,
-    private _componentResolver: ComponentFactoryResolver,
-    private _viewContainerRef: ViewContainerRef
+    public _element: ElementRef,
+    public _componentResolver: ComponentFactoryResolver,
+    public _viewContainerRef: ViewContainerRef
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -84,7 +84,7 @@ export class MentionDirective implements OnChanges {
     }
   }
 
-  private updateConfig() {
+  public updateConfig() {
     let config = this.mentionConfig;
     this.triggerChars = {};
     // use items from directive if they have been set
@@ -130,7 +130,7 @@ export class MentionDirective implements OnChanges {
       this.activeConfig = config;
       this.updateSearchList();
     }
-  }  
+  }
 
   setIframe(iframe: HTMLIFrameElement) {
     this.iframe = iframe;
@@ -255,10 +255,15 @@ export class MentionDirective implements OnChanges {
           }
           this.searchString = mention;
           this.searchTerm.emit(this.searchString);
+          this.getSearchTerms(this.searchString);
           this.updateSearchList();
         }
       }
     }
+  }
+
+  getSearchTerms(searchString: string) {
+
   }
 
   updateSearchList() {
